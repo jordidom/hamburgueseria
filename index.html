@@ -1,785 +1,1608 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger House - Las mejores hamburguesas de la ciudad</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>tailwind.config={theme:{extend:{colors:{primary:'#FF6B35',secondary:'#2EC4B6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-    <style>
-        :where([class^="ri-"])::before { content: "\f3c2"; }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .hero-section {
-            background-image: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url('https://public.readdy.ai/ai/img_res/010d739a4900fe66f62c031e84bb4c30.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .category-tab.active {
-            color: #FF6B35;
-            border-color: #FF6B35;
-        }
-        .scroll-indicator {
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .custom-checkbox {
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-        }
-        .custom-checkbox input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 20px;
-            width: 20px;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-        }
-        .custom-checkbox input:checked ~ .checkmark {
-            background-color: #FF6B35;
-            border-color: #FF6B35;
-        }
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
-        .custom-checkbox input:checked ~ .checkmark:after {
-            display: block;
-        }
-        .custom-checkbox .checkmark:after {
-            left: 6px;
-            top: 2px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-        .custom-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        .custom-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .switch-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        .switch-slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .switch-slider {
-            background-color: #FF6B35;
-        }
-        input:checked + .switch-slider:before {
-            transform: translateX(26px);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burger House - Las mejores hamburguesas de la ciudad</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FF6B35',secondary:'#2EC4B6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+scroll-behavior: smooth;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url('https://public.readdy.ai/ai/img_res/010d739a4900fe66f62c031e84bb4c30.jpg');
+background-size: cover;
+background-position: center;
+}
+.menu-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.category-tab.active {
+color: #FF6B35;
+border-color: #FF6B35;
+}
+.scroll-indicator {
+animation: bounce 2s infinite;
+}
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+40% {transform: translateY(-10px);}
+60% {transform: translateY(-5px);}
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+position: relative;
+padding-left: 30px;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+border: 2px solid #ccc;
+border-radius: 4px;
+transition: all 0.2s ease-in-out;
+}
+.custom-checkbox:hover .checkmark {
+border-color: #FF6B35;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #FF6B35;
+border-color: #FF6B35;
+transform: scale(1.05);
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+transition: all 0.2s ease-in-out;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+animation: check-animation 0.2s ease-in-out forwards;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+@keyframes check-animation {
+0% {
+opacity: 0;
+transform: rotate(45deg) scale(0.8);
+}
+50% {
+opacity: 0.5;
+transform: rotate(45deg) scale(1.2);
+}
+100% {
+opacity: 1;
+transform: rotate(45deg) scale(1);
+}
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: #FF6B35;
+}
+input:checked + .switch-slider:before {
+transform: translateX(26px);
+}
+/* Animaciones para los botones de incremento/decremento */
+.w-8.h-8.flex.items-center.justify-center.bg-gray-100.rounded-full {
+transition: all 0.2s ease;
+}
+.w-8.h-8.flex.items-center.justify-center.bg-gray-100.rounded-full:hover {
+background-color: #f3f4f6;
+transform: scale(1.05);
+}
+.w-8.h-8.flex.items-center.justify-center.bg-gray-100.rounded-full:active {
+transform: scale(0.95);
+}
+/* Animación para el contador */
+@keyframes pulse-scale {
+0% { transform: scale(1); }
+50% { transform: scale(1.25); }
+100% { transform: scale(1); }
+}
+.pulse-animation {
+animation: pulse-scale 0.3s ease-in-out;
+}
+/* Animación para los totales */
+@keyframes highlight {
+0% { color: inherit; }
+50% { color: #FF6B35; }
+100% { color: inherit; }
+}
+.highlight-animation {
+animation: highlight 0.5s ease-in-out;
+}
+/* Animación para el botón del carrito */
+@keyframes bounce-once {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+}
+.animate-bounce {
+animation: bounce-once 0.5s ease-in-out;
+}
+</style>
 </head>
 <body class="bg-white">
-    <!-- Navegación -->
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#inicio" class="text-gray-800 hover:text-primary font-medium">Inicio</a>
-                <a href="#menu" class="text-gray-800 hover:text-primary font-medium">Menú</a>
-                <a href="#galeria" class="text-gray-800 hover:text-primary font-medium">Galería</a>
-                <a href="#opiniones" class="text-gray-800 hover:text-primary font-medium">Opiniones</a>
-                <a href="#contacto" class="text-gray-800 hover:text-primary font-medium">Contacto</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ordenar Ahora</button>
-                <div class="md:hidden w-10 h-10 flex items-center justify-center">
-                    <i class="ri-menu-line text-gray-800 text-2xl"></i>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-section min-h-screen flex items-center pt-16">
-        <div class="container mx-auto px-4 w-full">
-            <div class="max-w-2xl">
-                <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Hamburguesas con Pasión</h1>
-                <p class="text-xl text-white mb-8">Sabores auténticos, ingredientes frescos y carne 100% de res. Disfruta de la mejor experiencia gastronómica en cada bocado.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ordenar Ahora</button>
-                    <button class="bg-white text-primary px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ver Menú</button>
-                </div>
-                <div class="mt-16 text-center">
-                    <div class="scroll-indicator inline-block text-white">
-                        <i class="ri-arrow-down-line text-3xl"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Especialidades -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Nuestras Especialidades</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Descubre nuestras hamburguesas más populares, preparadas con ingredientes frescos y la receta secreta que nos ha hecho famosos.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/abeb08768cc97ee53964d235547332c0.jpg" alt="Hamburguesa Clásica" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">La Clásica</h3>
-                        <p class="text-gray-600 mb-4">Nuestra hamburguesa tradicional con carne de res, queso cheddar, lechuga, tomate y nuestra salsa especial.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-xl">$8.99</span>
-                            <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/ff40a858ec95eadd569d75f7921bd0d2.jpg" alt="Hamburguesa BBQ" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">La BBQ Deluxe</h3>
-                        <p class="text-gray-600 mb-4">Carne a la parrilla, tocino crujiente, queso gouda, cebolla caramelizada y nuestra salsa BBQ casera.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-xl">$10.99</span>
-                            <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
-                    <div class="h-64 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/85a7395e468e8bff85bd2318ea261a41.jpg" alt="Hamburguesa Vegetariana" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">La Veggie</h3>
-                        <p class="text-gray-600 mb-4">Hamburguesa vegetariana con patty de garbanzos y espinacas, aguacate fresco, brotes y mayonesa de hierbas.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-primary font-bold text-xl">$9.99</span>
-                            <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Menú Completo -->
-    <section id="menu" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Nuestro Menú</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Explora nuestra variedad de hamburguesas, acompañamientos y bebidas. Todos nuestros platos están preparados con ingredientes frescos de la más alta calidad.</p>
-            </div>
-            
-            <!-- Tabs de categorías -->
-            <div class="flex justify-center mb-12">
-                <div class="inline-flex bg-gray-100 rounded-full p-1">
-                    <button class="category-tab active px-6 py-2 rounded-full whitespace-nowrap font-medium">Hamburguesas</button>
-                    <button class="category-tab px-6 py-2 rounded-full whitespace-nowrap font-medium">Acompañamientos</button>
-                    <button class="category-tab px-6 py-2 rounded-full whitespace-nowrap font-medium">Bebidas</button>
-                </div>
-            </div>
-            
-            <!-- Menú de Hamburguesas -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Hamburguesa 1 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/6f2dfba74372305411b03c62b20a6d10.jpg" alt="Hamburguesa Americana" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Americana</h3>
-                            <span class="text-primary font-bold">$8.50</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Carne de res, queso americano, lechuga, tomate, pepinillos y salsa especial en pan de sésamo.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-                
-                <!-- Hamburguesa 2 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/41094e6dd81fe7a812026b4c9bb44cf6.jpg" alt="Hamburguesa Doble" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Doble Tentación</h3>
-                            <span class="text-primary font-bold">$12.50</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Doble carne, doble queso, tocino crujiente, lechuga y salsa especial en pan brioche.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-                
-                <!-- Hamburguesa 3 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/e462e56b4284568b6f40418a9c08753e.jpg" alt="Hamburguesa Picante" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Picante</h3>
-                            <span class="text-primary font-bold">$9.99</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Carne de res, jalapeños, queso pepper jack, lechuga, tomate y mayonesa picante en pan brioche.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-                
-                <!-- Hamburguesa 4 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/612169cbf7eb5993b4819afff44c1184.jpg" alt="Hamburguesa Champiñones" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Champiñones & Queso</h3>
-                            <span class="text-primary font-bold">$10.50</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Carne de res, champiñones salteados, queso suizo, cebolla caramelizada y alioli de trufa.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-                
-                <!-- Hamburguesa 5 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/1ab80a7989dbf101bb9392415a95f134.jpg" alt="Hamburguesa Gourmet" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">Gourmet</h3>
-                            <span class="text-primary font-bold">$13.99</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Carne de res premium, queso azul, cebolla caramelizada, rúcula y mermelada de higo en pan pretzel.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-                
-                <!-- Hamburguesa 6 -->
-                <div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://public.readdy.ai/ai/img_res/453f3fcb9877c4f79c7cac882e6c5e38.jpg" alt="Hamburguesa BBQ" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold">BBQ Supreme</h3>
-                            <span class="text-primary font-bold">$11.99</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Carne de res, cerdo desmenuzado, coleslaw, aros de cebolla y salsa BBQ en pan brioche.</p>
-                        <button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="border border-primary text-primary px-8 py-3 !rounded-button font-medium hover:bg-primary hover:text-white transition whitespace-nowrap">Ver Menú Completo</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galería -->
-    <section id="galeria" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Nuestra Galería</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Imágenes que despiertan el apetito. Conoce nuestras creaciones, el ambiente de nuestro restaurante y el cuidado que ponemos en cada detalle.</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="overflow-hidden rounded-lg col-span-2 row-span-2">
-                    <img src="https://public.readdy.ai/ai/img_res/98283ea2e17d13e9416d4a070dafad7c.jpg" alt="Chef preparando hamburguesas" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://public.readdy.ai/ai/img_res/32b24ebab3cc6ef41c818c32ba7ba0c0.jpg" alt="Ingredientes frescos" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://public.readdy.ai/ai/img_res/bb1e48b3a6aecef43bb01336475282df.jpg" alt="Interior del restaurante" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://public.readdy.ai/ai/img_res/a0fff9eb7ab1bf8557148a2be17776c2.jpg" alt="Papas fritas crujientes" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://public.readdy.ai/ai/img_res/62aa99e2e881920d641f486d5494352a.jpg" alt="Cerveza artesanal" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Opiniones de Clientes -->
-    <section id="opiniones" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Lo Que Dicen Nuestros Clientes</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Nos enorgullece la satisfacción de nuestros clientes. Estas son algunas de las opiniones que han compartido sobre su experiencia con nosotros.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Opinión 1 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="https://public.readdy.ai/ai/img_res/54ed87a8005d9dc4b32fe932767539d5.jpg" alt="Cliente" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Carlos Rodríguez</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Las mejores hamburguesas que he probado en la ciudad. La carne está perfectamente cocinada y los ingredientes son siempre frescos. El servicio es excelente y el ambiente muy acogedor. ¡Volveré pronto!"</p>
-                </div>
-                
-                <!-- Opinión 2 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="https://public.readdy.ai/ai/img_res/4972b16043e2b2af87ad75e37aa55009.jpg" alt="Cliente" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Laura Martínez</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-half-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Me encanta la hamburguesa vegetariana, tiene un sabor increíble y la textura es perfecta. Además, las papas fritas son las mejores que he probado. El personal es muy amable y atento. Definitivamente mi lugar favorito."</p>
-                </div>
-                
-                <!-- Opinión 3 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="https://public.readdy.ai/ai/img_res/dfe1f82289315fb3f025bc18a0ce2ca9.jpg" alt="Cliente" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Miguel Sánchez</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Vengo con mi familia cada fin de semana. Las hamburguesas son espectaculares y tienen opciones para todos los gustos. El ambiente es familiar y acogedor. Los precios son justos por la calidad que ofrecen. Totalmente recomendado."</p>
-                </div>
-            </div>
-            
-            <div class="flex justify-center mt-12">
-                <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-primary rounded-full"></span>
-                    <span class="w-3 h-3 bg-gray-300 rounded-full"></span>
-                    <span class="w-3 h-3 bg-gray-300 rounded-full"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Pedido Online -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Haz Tu Pedido Online</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Disfruta de nuestras deliciosas hamburguesas en la comodidad de tu hogar. Realiza tu pedido online y te lo llevamos en menos de 30 minutos.</p>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Tu Pedido</h3>
-                        
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between items-center pb-4 border-b">
-                                <div>
-                                    <h4 class="font-medium">La Clásica</h4>
-                                    <p class="text-sm text-gray-500">Hamburguesa tradicional</p>
-                                </div>
-                                <div class="flex items-center">
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-subtract-line"></i>
-                                    </button>
-                                    <span class="mx-3">1</span>
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-add-line"></i>
-                                    </button>
-                                </div>
-                                <span class="font-medium">$8.99</span>
-                            </div>
-                            
-                            <div class="flex justify-between items-center pb-4 border-b">
-                                <div>
-                                    <h4 class="font-medium">Papas Fritas</h4>
-                                    <p class="text-sm text-gray-500">Porción grande</p>
-                                </div>
-                                <div class="flex items-center">
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-subtract-line"></i>
-                                    </button>
-                                    <span class="mx-3">1</span>
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-add-line"></i>
-                                    </button>
-                                </div>
-                                <span class="font-medium">$3.50</span>
-                            </div>
-                            
-                            <div class="flex justify-between items-center pb-4 border-b">
-                                <div>
-                                    <h4 class="font-medium">Refresco</h4>
-                                    <p class="text-sm text-gray-500">Cola 500ml</p>
-                                </div>
-                                <div class="flex items-center">
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-subtract-line"></i>
-                                    </button>
-                                    <span class="mx-3">1</span>
-                                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
-                                        <i class="ri-add-line"></i>
-                                    </button>
-                                </div>
-                                <span class="font-medium">$2.00</span>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-2 mb-6">
-                            <div class="flex justify-between">
-                                <span>Subtotal</span>
-                                <span>$14.49</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Envío</span>
-                                <span>$2.00</span>
-                            </div>
-                            <div class="flex justify-between font-bold text-lg pt-2 border-t">
-                                <span>Total</span>
-                                <span>$16.49</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <div class="flex items-center mb-3">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" checked>
-                                    <span class="checkmark"></span>
-                                    Incluir cubiertos
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    Agregar salsa extra
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6">Datos de Entrega</h3>
-                        
-                        <form class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu nombre">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu número de teléfono">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu dirección completa">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Instrucciones adicionales</label>
-                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" rows="2" placeholder="Instrucciones para el repartidor"></textarea>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Método de pago</label>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <div class="border border-gray-300 rounded p-3 text-center cursor-pointer hover:border-primary">
-                                        <i class="ri-bank-card-fill text-2xl mb-1"></i>
-                                        <p class="text-sm">Tarjeta</p>
-                                    </div>
-                                    <div class="border border-primary rounded p-3 text-center cursor-pointer bg-primary bg-opacity-5">
-                                        <i class="ri-cash-fill text-2xl mb-1"></i>
-                                        <p class="text-sm">Efectivo</p>
-                                    </div>
-                                    <div class="border border-gray-300 rounded p-3 text-center cursor-pointer hover:border-primary">
-                                        <i class="ri-paypal-fill text-2xl mb-1"></i>
-                                        <p class="text-sm">PayPal</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm font-medium">Entrega programada</span>
-                                <label class="custom-switch">
-                                    <input type="checkbox">
-                                    <span class="switch-slider"></span>
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Realizar Pedido</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Ubicación y Horarios -->
-    <section id="contacto" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Encuéntranos</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Visítanos en nuestra ubicación o contacta con nosotros para más información. Estamos disponibles para atenderte.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="h-96 rounded-lg overflow-hidden shadow-lg">
-                    <div class="w-full h-full" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
-                                <i class="ri-map-pin-line"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Dirección</h4>
-                                <p class="text-gray-600">Av. Principal 123, Colonia Centro, Ciudad de México, CP 12345</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
-                                <i class="ri-time-line"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Horario</h4>
-                                <p class="text-gray-600">Lunes a Jueves: 12:00 - 22:00</p>
-                                <p class="text-gray-600">Viernes y Sábado: 12:00 - 00:00</p>
-                                <p class="text-gray-600">Domingo: 13:00 - 21:00</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
-                                <i class="ri-phone-line"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Teléfono</h4>
-                                <p class="text-gray-600">+52 55 1234 5678</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
-                                <i class="ri-mail-line"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">Email</h4>
-                                <p class="text-gray-600">info@burgerhouse.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-medium mb-3">Síguenos en redes sociales</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
-                                <i class="ri-facebook-fill"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
-                                <i class="ri-instagram-line"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
-                                <i class="ri-twitter-x-line"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
-                                <i class="ri-whatsapp-line"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
-                    <p class="text-gray-400 mb-6">Hamburguesas artesanales preparadas con los mejores ingredientes y mucho amor. Desde 2010 ofreciendo la mejor experiencia gastronómica.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="ri-facebook-fill"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="ri-instagram-line"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="ri-twitter-x-line"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="ri-whatsapp-line"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#inicio" class="text-gray-400 hover:text-white transition">Inicio</a></li>
-                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menú</a></li>
-                        <li><a href="#galeria" class="text-gray-400 hover:text-white transition">Galería</a></li>
-                        <li><a href="#opiniones" class="text-gray-400 hover:text-white transition">Opiniones</a></li>
-                        <li><a href="#contacto" class="text-gray-400 hover:text-white transition">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Horario</h4>
-                    <ul class="space-y-2">
-                        <li class="text-gray-400">Lunes a Jueves: 12:00 - 22:00</li>
-                        <li class="text-gray-400">Viernes y Sábado: 12:00 - 00:00</li>
-                        <li class="text-gray-400">Domingo: 13:00 - 21:00</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Contacto</h4>
-                    <ul class="space-y-2">
-                        <li class="text-gray-400">Av. Principal 123, Colonia Centro</li>
-                        <li class="text-gray-400">Ciudad de México, CP 12345</li>
-                        <li class="text-gray-400">+52 55 1234 5678</li>
-                        <li class="text-gray-400">info@burgerhouse.com</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Burger House. Todos los derechos reservados.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition">Términos y Condiciones</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidad</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botón flotante de WhatsApp -->
-    <a href="#" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-50 hover:bg-green-600 transition">
-        <i class="ri-whatsapp-line text-white text-2xl"></i>
-    </a>
-
-    <!-- Botón flotante de Carrito -->
-    <button class="fixed bottom-6 left-6 bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap shadow-lg z-50 flex items-center">
-        <i class="ri-shopping-cart-2-line mr-2"></i>
-        <span>Carrito (3)</span>
-    </button>
-
-    <script>
-        // Cambio de categorías en el menú
-        const categoryTabs = document.querySelectorAll('.category-tab');
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
-
-        // Scroll suave para los enlaces de navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Animación para el indicador de scroll
-        window.addEventListener('scroll', () => {
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator && window.scrollY > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else if (scrollIndicator) {
-                scrollIndicator.style.opacity = '1';
-            }
-        });
-    </script>
+<!-- Navegación -->
+<nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
+<div class="hidden md:flex space-x-8">
+<a href="#inicio" class="text-gray-800 hover:text-primary font-medium">Inicio</a>
+<a href="#menu" class="text-gray-800 hover:text-primary font-medium">Menú</a>
+<a href="#galeria" class="text-gray-800 hover:text-primary font-medium">Galería</a>
+<a href="#opiniones" class="text-gray-800 hover:text-primary font-medium">Opiniones</a>
+<a href="#contacto" class="text-gray-800 hover:text-primary font-medium">Contacto</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ordenar Ahora</button>
+<div class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line text-gray-800 text-2xl"></i>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="inicio" class="hero-section min-h-screen flex items-center pt-16">
+<div class="container mx-auto px-4 w-full">
+<div class="max-w-2xl">
+<h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Hamburguesas con Pasión</h1>
+<p class="text-xl text-white mb-8">Sabores auténticos, ingredientes frescos y carne 100% de res. Disfruta de la mejor experiencia gastronómica en cada bocado.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button id="ordenarAhoraBtn" class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ordenar Ahora</button>
+<button id="verMenuBtn" class="bg-white text-primary px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Ver Menú</button>
+</div>
+<div class="mt-16 text-center">
+<div class="scroll-indicator inline-block text-white">
+<i class="ri-arrow-down-line text-3xl"></i>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección Especialidades -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Nuestras Especialidades</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Descubre nuestras hamburguesas más populares, preparadas con ingredientes frescos y la receta secreta que nos ha hecho famosos.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+<div class="h-64 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/abeb08768cc97ee53964d235547332c0.jpg" alt="Hamburguesa Clásica" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">La Clásica</h3>
+<p class="text-gray-600 mb-4">Nuestra hamburguesa tradicional con carne de res, queso cheddar, lechuga, tomate y nuestra salsa especial.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$8.99</span>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+<div class="h-64 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/ff40a858ec95eadd569d75f7921bd0d2.jpg" alt="Hamburguesa BBQ" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">La BBQ Deluxe</h3>
+<p class="text-gray-600 mb-4">Carne a la parrilla, tocino crujiente, queso gouda, cebolla caramelizada y nuestra salsa BBQ casera.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$10.99</span>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+<div class="h-64 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/85a7395e468e8bff85bd2318ea261a41.jpg" alt="Hamburguesa Vegetariana" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2">La Veggie</h3>
+<p class="text-gray-600 mb-4">Hamburguesa vegetariana con patty de garbanzos y espinacas, aguacate fresco, brotes y mayonesa de hierbas.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$9.99</span>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Añadir</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Menú Completo -->
+<section id="menu" class="py-20">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Nuestro Menú</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Explora nuestra variedad de hamburguesas, acompañamientos y bebidas. Todos nuestros platos están preparados con ingredientes frescos de la más alta calidad.</p>
+</div>
+<!-- Tabs de categorías -->
+<div class="flex justify-center mb-12">
+<div class="inline-flex bg-gray-100 rounded-full p-1">
+<button class="category-tab active px-6 py-2 rounded-full whitespace-nowrap font-medium">Hamburguesas</button>
+<button class="category-tab px-6 py-2 rounded-full whitespace-nowrap font-medium">Acompañamientos</button>
+<button class="category-tab px-6 py-2 rounded-full whitespace-nowrap font-medium">Bebidas</button>
+</div>
+</div>
+<!-- Menú de Hamburguesas -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Hamburguesa 1 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A classic cheeseburger with melted American cheese, lettuce, tomato, and pickles on a sesame seed bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=5&orientation=landscape&removebg=false" alt="Hamburguesa Americana" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">Americana</h3>
+<span class="text-primary font-bold">$8.50</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Carne de res, queso americano, lechuga, tomate, pepinillos y salsa especial en pan de sésamo.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+<!-- Hamburguesa 2 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A double cheeseburger with two beef patties, double cheese, bacon, lettuce, and special sauce on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=6&orientation=landscape&removebg=false" alt="Hamburguesa Doble" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">Doble Tentación</h3>
+<span class="text-primary font-bold">$12.50</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Doble carne, doble queso, tocino crujiente, lechuga y salsa especial en pan brioche.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+<!-- Hamburguesa 3 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A spicy burger with jalapeños, pepper jack cheese, lettuce, tomato, and spicy mayo on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=7&orientation=landscape&removebg=false" alt="Hamburguesa Picante" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">Picante</h3>
+<span class="text-primary font-bold">$9.99</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Carne de res, jalapeños, queso pepper jack, lechuga, tomate y mayonesa picante en pan brioche.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+<!-- Hamburguesa 4 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A gourmet mushroom and swiss burger with sautéed mushrooms, melted swiss cheese, caramelized onions, and truffle aioli on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=8&orientation=landscape&removebg=false" alt="Hamburguesa Champiñones" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">Champiñones & Queso</h3>
+<span class="text-primary font-bold">$10.50</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Carne de res, champiñones salteados, queso suizo, cebolla caramelizada y alioli de trufa.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+<!-- Hamburguesa 5 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/1ab80a7989dbf101bb9392415a95f134.jpg" alt="Hamburguesa Gourmet" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">Gourmet</h3>
+<span class="text-primary font-bold">$13.99</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Carne de res premium, queso azul, cebolla caramelizada, rúcula y mermelada de higo en pan pretzel.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+<!-- Hamburguesa 6 -->
+<div class="menu-item bg-white rounded-lg overflow-hidden shadow transition-all duration-300">
+<div class="h-48 overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/453f3fcb9877c4f79c7cac882e6c5e38.jpg" alt="Hamburguesa BBQ" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold">BBQ Supreme</h3>
+<span class="text-primary font-bold">$11.99</span>
+</div>
+<p class="text-gray-600 text-sm mb-4">Carne de res, cerdo desmenuzado, coleslaw, aros de cebolla y salsa BBQ en pan brioche.</p>
+<button class="bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full">Añadir al Carrito</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="border border-primary text-primary px-8 py-3 !rounded-button font-medium hover:bg-primary hover:text-white transition whitespace-nowrap">Ver Menú Completo</button>
+</div>
+</div>
+</section>
+<!-- Galería -->
+<section id="galeria" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Nuestra Galería</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Imágenes que despiertan el apetito. Conoce nuestras creaciones, el ambiente de nuestro restaurante y el cuidado que ponemos en cada detalle.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="overflow-hidden rounded-lg col-span-2 row-span-2">
+<img src="https://public.readdy.ai/ai/img_res/98283ea2e17d13e9416d4a070dafad7c.jpg" alt="Chef preparando hamburguesas" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+</div>
+<div class="overflow-hidden rounded-lg">
+<img src="https://public.readdy.ai/ai/img_res/32b24ebab3cc6ef41c818c32ba7ba0c0.jpg" alt="Ingredientes frescos" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+</div>
+<div class="overflow-hidden rounded-lg">
+<img src="https://public.readdy.ai/ai/img_res/bb1e48b3a6aecef43bb01336475282df.jpg" alt="Interior del restaurante" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+</div>
+<div class="overflow-hidden rounded-lg">
+<img src="https://readdy.ai/api/search-image?query=A close-up of golden, crispy french fries in a stylish serving basket with a small cup of ketchup on the side. The fries look perfectly cooked with visible seasoning.&width=400&height=400&seq=14&orientation=squarish&removebg=false" alt="Papas fritas crujientes" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+</div>
+<div class="overflow-hidden rounded-lg">
+<img src="https://public.readdy.ai/ai/img_res/62aa99e2e881920d641f486d5494352a.jpg" alt="Cerveza artesanal" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+</div>
+</div>
+</div>
+</section>
+<!-- Opiniones de Clientes -->
+<section id="opiniones" class="py-20">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Lo Que Dicen Nuestros Clientes</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Nos enorgullece la satisfacción de nuestros clientes. Estas son algunas de las opiniones que han compartido sobre su experiencia con nosotros.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Opinión 1 -->
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/54ed87a8005d9dc4b32fe932767539d5.jpg" alt="Cliente" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-bold">Carlos Rodríguez</h4>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+</div>
+<p class="text-gray-600">"Las mejores hamburguesas que he probado en la ciudad. La carne está perfectamente cocinada y los ingredientes son siempre frescos. El servicio es excelente y el ambiente muy acogedor. ¡Volveré pronto!"</p>
+</div>
+<!-- Opinión 2 -->
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/4972b16043e2b2af87ad75e37aa55009.jpg" alt="Cliente" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-bold">Laura Martínez</h4>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+</div>
+<p class="text-gray-600">"Me encanta la hamburguesa vegetariana, tiene un sabor increíble y la textura es perfecta. Además, las papas fritas son las mejores que he probado. El personal es muy amable y atento. Definitivamente mi lugar favorito."</p>
+</div>
+<!-- Opinión 3 -->
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/dfe1f82289315fb3f025bc18a0ce2ca9.jpg" alt="Cliente" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-bold">Miguel Sánchez</h4>
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+</div>
+</div>
+<p class="text-gray-600">"Vengo con mi familia cada fin de semana. Las hamburguesas son espectaculares y tienen opciones para todos los gustos. El ambiente es familiar y acogedor. Los precios son justos por la calidad que ofrecen. Totalmente recomendado."</p>
+</div>
+</div>
+<div class="flex justify-center mt-12">
+<div class="flex space-x-2">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="w-3 h-3 bg-gray-300 rounded-full"></span>
+<span class="w-3 h-3 bg-gray-300 rounded-full"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección de Pedido Online -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Haz Tu Pedido Online</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Disfruta de nuestras deliciosas hamburguesas en la comodidad de tu hogar. Realiza tu pedido online y te lo llevamos en menos de 30 minutos.</p>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h3 class="text-2xl font-bold mb-6">Tu Pedido</h3>
+<div id="pedidoItems" class="space-y-4 mb-6">
+<div class="text-center py-8">
+<i class="ri-shopping-cart-2-line text-5xl text-gray-300 mb-4"></i>
+<p class="text-gray-500">Tu carrito está vacío</p>
+<button id="agregarProductosBtn" class="mt-4 bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Agregar Productos</button>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex justify-between">
+<span>Subtotal</span>
+<span id="subtotalPedido">$0.00</span>
+</div>
+<div class="flex justify-between">
+<span>Envío</span>
+<span>$2.00</span>
+</div>
+<div class="flex justify-between font-bold text-lg pt-2 border-t">
+<span>Total</span>
+<span id="totalPedido">$2.00</span>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-center mb-3">
+<label class="custom-checkbox">
+<input type="checkbox" checked id="incluirCubiertos">
+<span class="checkmark"></span>
+Incluir cubiertos
+</label>
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox">
+<input type="checkbox" id="agregarSalsaExtra">
+<span class="checkmark"></span>
+Agregar salsa extra <span class="text-xs text-primary ml-1">+$0.99</span>
+</label>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold mb-6">Datos de Entrega</h3>
+<form class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+<input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu nombre">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+<input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu número de teléfono">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
+<input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu dirección completa">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Instrucciones adicionales</label>
+<textarea class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" rows="2" placeholder="Instrucciones para el repartidor"></textarea>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Método de pago</label>
+<div class="grid grid-cols-3 gap-3">
+<div class="border border-gray-300 rounded p-3 text-center cursor-pointer hover:border-primary">
+<i class="ri-bank-card-fill text-2xl mb-1"></i>
+<p class="text-sm">Tarjeta</p>
+</div>
+<div class="border border-primary rounded p-3 text-center cursor-pointer bg-primary bg-opacity-5">
+<i class="ri-cash-fill text-2xl mb-1"></i>
+<p class="text-sm">Efectivo</p>
+</div>
+<div class="border border-gray-300 rounded p-3 text-center cursor-pointer hover:border-primary">
+<i class="ri-paypal-fill text-2xl mb-1"></i>
+<p class="text-sm">PayPal</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium">Entrega programada</span>
+<label class="custom-switch">
+<input type="checkbox">
+<span class="switch-slider"></span>
+</label>
+</div>
+<button type="button" id="realizarPedidoBtn" class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Realizar Pedido</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ubicación y Horarios -->
+<section id="contacto" class="py-20">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Encuéntranos</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Visítanos en nuestra ubicación o contacta con nosotros para más información. Estamos disponibles para atenderte.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div class="h-96 rounded-lg overflow-hidden shadow-lg">
+<div class="w-full h-full" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
+<i class="ri-map-pin-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Dirección</h4>
+<p class="text-gray-600">Av. Principal 123, Colonia Centro, Ciudad de México, CP 12345</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
+<i class="ri-time-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Horario</h4>
+<p class="text-gray-600">Lunes a Jueves: 12:00 - 22:00</p>
+<p class="text-gray-600">Viernes y Sábado: 12:00 - 00:00</p>
+<p class="text-gray-600">Domingo: 13:00 - 21:00</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
+<i class="ri-phone-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Teléfono</h4>
+<p class="text-gray-600">+52 55 1234 5678</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 text-primary">
+<i class="ri-mail-line"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email</h4>
+<p class="text-gray-600">info@burgerhouse.com</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="font-medium mb-3">Síguenos en redes sociales</h4>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition">
+<i class="ri-whatsapp-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
+<p class="text-gray-400 mb-6">Hamburguesas artesanales preparadas con los mejores ingredientes y mucho amor. Desde 2010 ofreciendo la mejor experiencia gastronómica.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition">
+<i class="ri-whatsapp-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
+<ul class="space-y-2">
+<li><a href="#inicio" class="text-gray-400 hover:text-white transition">Inicio</a></li>
+<li><a href="#menu" class="text-gray-400 hover:text-white transition">Menú</a></li>
+<li><a href="#galeria" class="text-gray-400 hover:text-white transition">Galería</a></li>
+<li><a href="#opiniones" class="text-gray-400 hover:text-white transition">Opiniones</a></li>
+<li><a href="#contacto" class="text-gray-400 hover:text-white transition">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Horario</h4>
+<ul class="space-y-2">
+<li class="text-gray-400">Lunes a Jueves: 12:00 - 22:00</li>
+<li class="text-gray-400">Viernes y Sábado: 12:00 - 00:00</li>
+<li class="text-gray-400">Domingo: 13:00 - 21:00</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contacto</h4>
+<ul class="space-y-2">
+<li class="text-gray-400">Av. Principal 123, Colonia Centro</li>
+<li class="text-gray-400">Ciudad de México, CP 12345</li>
+<li class="text-gray-400">+52 55 1234 5678</li>
+<li class="text-gray-400">info@burgerhouse.com</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 mb-4 md:mb-0">© 2025 Burger House. Todos los derechos reservados.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white transition">Términos y Condiciones</a>
+<a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidad</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Botón flotante de WhatsApp -->
+<a href="#" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-50 hover:bg-green-600 transition">
+<i class="ri-whatsapp-line text-white text-2xl"></i>
+</a>
+<!-- Botón flotante de Carrito -->
+<button id="carritoBtn" class="fixed bottom-6 left-6 bg-primary text-white px-4 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap shadow-lg z-50 flex items-center">
+<i class="ri-shopping-cart-2-line mr-2"></i>
+<span id="carritoCount">Carrito (0)</span>
+</button>
+<script>
+// Cambio de categorías en el menú
+const categoryTabs = document.querySelectorAll('.category-tab');
+categoryTabs.forEach(tab => {
+tab.addEventListener('click', () => {
+categoryTabs.forEach(t => t.classList.remove('active'));
+tab.classList.add('active');
+});
+});
+// Scroll suave para los enlaces de navegación
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelector(this.getAttribute('href')).scrollIntoView({
+behavior: 'smooth'
+});
+});
+});
+// Animación para el indicador de scroll
+window.addEventListener('scroll', () => {
+const scrollIndicator = document.querySelector('.scroll-indicator');
+if (scrollIndicator && window.scrollY > 100) {
+scrollIndicator.style.opacity = '0';
+} else if (scrollIndicator) {
+scrollIndicator.style.opacity = '1';
+}
+});
+// Sistema de carrito de compras
+let carrito = [];
+const productosDisponibles = [
+{ id: 1, nombre: 'La Clásica', descripcion: 'Hamburguesa tradicional', precio: 8.99, imagen: 'https://readdy.ai/api/search-image?query=A classic cheeseburger with melted American cheese, lettuce, tomato, and pickles on a sesame seed bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=5&orientation=landscape&removebg=false' },
+{ id: 2, nombre: 'Doble Tentación', descripcion: 'Doble carne, doble queso', precio: 12.50, imagen: 'https://readdy.ai/api/search-image?query=A double cheeseburger with two beef patties, double cheese, bacon, lettuce, and special sauce on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=6&orientation=landscape&removebg=false' },
+{ id: 3, nombre: 'Picante', descripcion: 'Con jalapeños y queso pepper jack', precio: 9.99, imagen: 'https://readdy.ai/api/search-image?query=A spicy burger with jalapeños, pepper jack cheese, lettuce, tomato, and spicy mayo on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=7&orientation=landscape&removebg=false' },
+{ id: 4, nombre: 'Champiñones & Queso', descripcion: 'Con champiñones y queso suizo', precio: 10.50, imagen: 'https://readdy.ai/api/search-image?query=A gourmet mushroom and swiss burger with sautéed mushrooms, melted swiss cheese, caramelized onions, and truffle aioli on a brioche bun. The burger is photographed from a slight angle showing all layers. It has a clean, minimalist background with soft lighting highlighting the textures of the burger.&width=500&height=300&seq=8&orientation=landscape&removebg=false' },
+{ id: 5, nombre: 'Papas Fritas', descripcion: 'Porción grande', precio: 3.50, imagen: 'https://readdy.ai/api/search-image?query=A close-up of golden, crispy french fries in a stylish serving basket with a small cup of ketchup on the side. The fries look perfectly cooked with visible seasoning.&width=400&height=400&seq=14&orientation=squarish&removebg=false' },
+{ id: 6, nombre: 'Refresco', descripcion: 'Cola 500ml', precio: 2.00, imagen: 'https://public.readdy.ai/ai/img_res/2a85b1b9ec82943dc72876b1b83507c3.jpg' }
+];
+// Actualizar contador del carrito
+function actualizarContadorCarrito() {
+const cantidadTotal = carrito.reduce((total, item) => total + item.cantidad, 0);
+document.getElementById('carritoCount').textContent = `Carrito (${cantidadTotal})`;
+}
+// Añadir producto al carrito
+function agregarAlCarrito(producto, cantidad = 1) {
+const itemExistente = carrito.find(item => item.id === producto.id);
+if (itemExistente) {
+itemExistente.cantidad += cantidad;
+} else {
+carrito.push({...producto, cantidad});
+}
+actualizarContadorCarrito();
+mostrarNotificacion(`${producto.nombre} añadido al carrito`);
+// Animar el contador del carrito
+const carritoCount = document.getElementById('carritoCount');
+carritoCount.classList.add('scale-125', 'text-white', 'font-bold');
+setTimeout(() => {
+carritoCount.classList.remove('scale-125', 'text-white', 'font-bold');
+}, 300);
+// Actualizar subtotales y totales en la página
+actualizarTotalesEnPagina();
+// Actualizar la sección de pedido
+actualizarTotalesPedido();
+// Animar el botón del carrito
+const carritoBtn = document.getElementById('carritoBtn');
+carritoBtn.classList.add('animate-bounce');
+setTimeout(() => {
+carritoBtn.classList.remove('animate-bounce');
+}, 500);
+}
+// Eliminar producto del carrito
+function eliminarDelCarrito(productoId) {
+carrito = carrito.filter(item => item.id !== productoId);
+actualizarContadorCarrito();
+mostrarCarrito(); // Actualizar modal del carrito si está abierto
+actualizarTotalesPedido(); // Actualizar la sección de pedido
+}
+// Cambiar cantidad de un producto en el carrito
+function cambiarCantidad(productoId, nuevaCantidad) {
+const item = carrito.find(item => item.id === productoId);
+if (item) {
+if (nuevaCantidad <= 0) {
+eliminarDelCarrito(productoId);
+} else {
+item.cantidad = nuevaCantidad;
+actualizarContadorCarrito();
+mostrarCarrito(); // Actualizar modal del carrito si está abierto
+// Animar el contador del carrito
+const carritoCount = document.getElementById('carritoCount');
+carritoCount.classList.add('scale-125', 'text-white', 'font-bold');
+setTimeout(() => {
+carritoCount.classList.remove('scale-125', 'text-white', 'font-bold');
+}, 300);
+// Actualizar subtotales y totales en la página
+actualizarTotalesEnPagina();
+// Actualizar la sección de pedido
+actualizarTotalesPedido();
+}
+}
+}
+// Función para incrementar la cantidad en la sección de pedido
+function incrementarCantidad(button) {
+const cantidadElement = button.previousElementSibling;
+const cantidadActual = parseInt(cantidadElement.textContent);
+const nuevaCantidad = cantidadActual + 1;
+cantidadElement.textContent = nuevaCantidad;
+cantidadElement.classList.add('pulse-animation');
+setTimeout(() => {
+cantidadElement.classList.remove('pulse-animation');
+}, 300);
+// Obtener el nombre del producto
+const productoElement = button.closest('.flex.justify-between.items-center').querySelector('h4');
+if (productoElement) {
+const nombreProducto = productoElement.textContent;
+// Buscar el producto en la lista de disponibles
+const producto = productosDisponibles.find(p => p.nombre === nombreProducto);
+if (producto) {
+// Actualizar el precio mostrado
+const precioUnitario = producto.precio;
+const precioTotal = precioUnitario * nuevaCantidad;
+const precioElement = button.closest('.flex.justify-between.items-center').querySelector('span:last-child');
+if (precioElement) {
+precioElement.textContent = `$${precioTotal.toFixed(2)}`;
+precioElement.classList.add('highlight-animation');
+setTimeout(() => {
+precioElement.classList.remove('highlight-animation');
+}, 500);
+}
+// Actualizar subtotal y total
+actualizarTotalesPedido();
+}
+}
+}
+// Función para decrementar la cantidad en la sección de pedido
+function decrementarCantidad(button) {
+const cantidadElement = button.nextElementSibling;
+const cantidadActual = parseInt(cantidadElement.textContent);
+if (cantidadActual > 1) {
+const nuevaCantidad = cantidadActual - 1;
+cantidadElement.textContent = nuevaCantidad;
+cantidadElement.classList.add('pulse-animation');
+setTimeout(() => {
+cantidadElement.classList.remove('pulse-animation');
+}, 300);
+// Obtener el nombre del producto
+const productoElement = button.closest('.flex.justify-between.items-center').querySelector('h4');
+if (productoElement) {
+const nombreProducto = productoElement.textContent;
+// Buscar el producto en la lista de disponibles
+const producto = productosDisponibles.find(p => p.nombre === nombreProducto);
+if (producto) {
+// Actualizar el precio mostrado
+const precioUnitario = producto.precio;
+const precioTotal = precioUnitario * nuevaCantidad;
+const precioElement = button.closest('.flex.justify-between.items-center').querySelector('span:last-child');
+if (precioElement) {
+precioElement.textContent = `$${precioTotal.toFixed(2)}`;
+precioElement.classList.add('highlight-animation');
+setTimeout(() => {
+precioElement.classList.remove('highlight-animation');
+}, 500);
+}
+// Actualizar subtotal y total
+actualizarTotalesPedido();
+}
+}
+}
+}
+// Función para actualizar los totales en la sección de pedido
+function actualizarTotalesPedido() {
+const subtotal = carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+const envio = 2.00;
+let extras = 0;
+// Verificar si se ha seleccionado la salsa extra
+const salsaExtraCheckbox = document.getElementById('agregarSalsaExtra');
+if (salsaExtraCheckbox && salsaExtraCheckbox.checked) {
+extras += 0.99;
+}
+const total = subtotal + envio + extras;
+// Actualizar subtotal y total en la página
+const subtotalElement = document.getElementById('subtotalPedido');
+const totalElement = document.getElementById('totalPedido');
+if (subtotalElement) {
+subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+subtotalElement.classList.add('highlight-animation');
+setTimeout(() => {
+subtotalElement.classList.remove('highlight-animation');
+}, 500);
+}
+if (totalElement) {
+totalElement.textContent = `$${total.toFixed(2)}`;
+totalElement.classList.add('highlight-animation');
+setTimeout(() => {
+totalElement.classList.remove('highlight-animation');
+}, 500);
+}
+// Actualizar la sección de pedido
+actualizarItemsPedido();
+}
+// Función para actualizar los items en la sección de pedido
+function actualizarItemsPedido() {
+const pedidoItemsContainer = document.getElementById('pedidoItems');
+if (!pedidoItemsContainer) return;
+// Limpiar el contenedor
+pedidoItemsContainer.innerHTML = '';
+if (carrito.length === 0) {
+// Mostrar mensaje de carrito vacío
+pedidoItemsContainer.innerHTML = `
+<div class="text-center py-8">
+<i class="ri-shopping-cart-2-line text-5xl text-gray-300 mb-4"></i>
+<p class="text-gray-500">Tu carrito está vacío</p>
+<button id="agregarProductosBtn" class="mt-4 bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Agregar Productos</button>
+</div>
+`;
+// Agregar evento al botón
+setTimeout(() => {
+const agregarProductosBtn = document.getElementById('agregarProductosBtn');
+if (agregarProductosBtn) {
+agregarProductosBtn.addEventListener('click', mostrarModalProductos);
+}
+}, 0);
+} else {
+// Mostrar los items del carrito
+carrito.forEach(item => {
+const itemElement = document.createElement('div');
+itemElement.className = 'flex justify-between items-center pb-4 border-b';
+itemElement.innerHTML = `
+<div>
+<h4 class="font-medium">${item.nombre}</h4>
+<p class="text-sm text-gray-500">${item.descripcion}</p>
+</div>
+<div class="flex items-center">
+<button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 transition-all duration-200 transform hover:scale-105 active:scale-95" onclick="decrementarCantidadCarrito(${item.id})">
+<i class="ri-subtract-line"></i>
+</button>
+<span class="mx-3">${item.cantidad}</span>
+<button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 transition-all duration-200 transform hover:scale-105 active:scale-95" onclick="incrementarCantidadCarrito(${item.id})">
+<i class="ri-add-line"></i>
+</button>
+</div>
+<span class="font-medium">$${(item.precio * item.cantidad).toFixed(2)}</span>
+`;
+pedidoItemsContainer.appendChild(itemElement);
+});
+}
+}
+// Funciones para incrementar y decrementar cantidades desde la sección de pedido
+function incrementarCantidadCarrito(id) {
+const item = carrito.find(item => item.id === id);
+if (item) {
+item.cantidad++;
+actualizarContadorCarrito();
+actualizarTotalesPedido();
+}
+}
+function decrementarCantidadCarrito(id) {
+const item = carrito.find(item => item.id === id);
+if (item && item.cantidad > 1) {
+item.cantidad--;
+actualizarContadorCarrito();
+actualizarTotalesPedido();
+} else if (item && item.cantidad === 1) {
+eliminarDelCarrito(id);
+}
+}
+// Función para actualizar los subtotales y totales en la página
+function actualizarTotalesEnPagina() {
+// Actualizar en la sección de pedido online si existe
+const subtotalElements = document.querySelectorAll('.space-y-2 div:first-child span:last-child');
+const envioElements = document.querySelectorAll('.space-y-2 div:nth-child(2) span:last-child');
+const totalElements = document.querySelectorAll('.space-y-2 div:last-child span:last-child');
+const subtotal = carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+const envio = 2.00;
+const total = subtotal + envio;
+subtotalElements.forEach(el => {
+if (el) {
+// Animar el cambio
+el.classList.add('text-primary');
+el.textContent = `$${subtotal.toFixed(2)}`;
+setTimeout(() => {
+el.classList.remove('text-primary');
+}, 500);
+}
+});
+totalElements.forEach(el => {
+if (el) {
+// Animar el cambio
+el.classList.add('text-primary', 'scale-110');
+el.textContent = `$${total.toFixed(2)}`;
+setTimeout(() => {
+el.classList.remove('text-primary', 'scale-110');
+}, 500);
+}
+});
+}
+// Mostrar notificación
+function mostrarNotificacion(mensaje) {
+const notificacion = document.createElement('div');
+notificacion.className = 'fixed top-20 right-4 bg-primary text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity duration-300';
+notificacion.textContent = mensaje;
+document.body.appendChild(notificacion);
+setTimeout(() => {
+notificacion.style.opacity = '0';
+setTimeout(() => {
+document.body.removeChild(notificacion);
+}, 300);
+}, 2000);
+}
+// Crear modal de productos
+function crearModalProductos() {
+// Crear el fondo oscuro
+const modalOverlay = document.createElement('div');
+modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modalOverlay.id = 'modalProductos';
+// Crear el contenido del modal
+const modalContent = document.createElement('div');
+modalContent.className = 'bg-white rounded-lg shadow-xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto';
+// Cabecera del modal
+const modalHeader = document.createElement('div');
+modalHeader.className = 'flex justify-between items-center mb-6';
+const modalTitle = document.createElement('h3');
+modalTitle.className = 'text-2xl font-bold';
+modalTitle.textContent = 'Nuestro Menú';
+const closeButton = document.createElement('button');
+closeButton.className = 'text-gray-500 hover:text-gray-700';
+closeButton.innerHTML = '<i class="ri-close-line text-2xl"></i>';
+closeButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+};
+modalHeader.appendChild(modalTitle);
+modalHeader.appendChild(closeButton);
+// Categorías
+const categoriesContainer = document.createElement('div');
+categoriesContainer.className = 'flex justify-center mb-8';
+const categoriesWrapper = document.createElement('div');
+categoriesWrapper.className = 'inline-flex bg-gray-100 rounded-full p-1';
+const categories = ['Hamburguesas', 'Acompañamientos', 'Bebidas'];
+categories.forEach((category, index) => {
+const categoryButton = document.createElement('button');
+categoryButton.className = `category-tab px-6 py-2 rounded-full whitespace-nowrap font-medium ${index === 0 ? 'active' : ''}`;
+categoryButton.textContent = category;
+categoryButton.onclick = () => {
+document.querySelectorAll('#modalProductos .category-tab').forEach(tab => tab.classList.remove('active'));
+categoryButton.classList.add('active');
+};
+categoriesWrapper.appendChild(categoryButton);
+});
+categoriesContainer.appendChild(categoriesWrapper);
+// Productos
+const productsContainer = document.createElement('div');
+productsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+productosDisponibles.forEach(producto => {
+const productCard = document.createElement('div');
+productCard.className = 'bg-white rounded-lg overflow-hidden shadow border transition-all duration-300 hover:shadow-lg';
+const productImage = document.createElement('div');
+productImage.className = 'h-48 overflow-hidden';
+productImage.innerHTML = `<img src="${producto.imagen}" alt="${producto.nombre}" class="w-full h-full object-cover object-top">`;
+const productInfo = document.createElement('div');
+productInfo.className = 'p-4';
+const productHeader = document.createElement('div');
+productHeader.className = 'flex justify-between items-start mb-2';
+productHeader.innerHTML = `
+<h3 class="text-lg font-bold">${producto.nombre}</h3>
+<span class="text-primary font-bold">$${producto.precio.toFixed(2)}</span>
+`;
+const productDescription = document.createElement('p');
+productDescription.className = 'text-gray-600 text-sm mb-4';
+productDescription.textContent = producto.descripcion;
+const addButton = document.createElement('button');
+addButton.className = 'bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full';
+addButton.textContent = 'Añadir al Carrito';
+addButton.onclick = () => {
+agregarAlCarrito(producto);
+};
+productInfo.appendChild(productHeader);
+productInfo.appendChild(productDescription);
+productInfo.appendChild(addButton);
+productCard.appendChild(productImage);
+productCard.appendChild(productInfo);
+productsContainer.appendChild(productCard);
+});
+// Ensamblar el modal
+modalContent.appendChild(modalHeader);
+modalContent.appendChild(categoriesContainer);
+modalContent.appendChild(productsContainer);
+modalOverlay.appendChild(modalContent);
+return modalOverlay;
+}
+// Crear modal del carrito
+function crearModalCarrito() {
+// Crear el fondo oscuro
+const modalOverlay = document.createElement('div');
+modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modalOverlay.id = 'modalCarrito';
+// Crear el contenido del modal
+const modalContent = document.createElement('div');
+modalContent.className = 'bg-white rounded-lg shadow-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto';
+// Cabecera del modal
+const modalHeader = document.createElement('div');
+modalHeader.className = 'flex justify-between items-center mb-6';
+const modalTitle = document.createElement('h3');
+modalTitle.className = 'text-2xl font-bold';
+modalTitle.textContent = 'Tu Carrito';
+const closeButton = document.createElement('button');
+closeButton.className = 'text-gray-500 hover:text-gray-700';
+closeButton.innerHTML = '<i class="ri-close-line text-2xl"></i>';
+closeButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+};
+modalHeader.appendChild(modalTitle);
+modalHeader.appendChild(closeButton);
+// Contenido del carrito
+const cartContent = document.createElement('div');
+cartContent.className = 'mb-6';
+if (carrito.length === 0) {
+const emptyCart = document.createElement('div');
+emptyCart.className = 'text-center py-8';
+emptyCart.innerHTML = `
+<i class="ri-shopping-cart-2-line text-5xl text-gray-300 mb-4"></i>
+<p class="text-gray-500">Tu carrito está vacío</p>
+<button id="seguirComprando" class="mt-4 bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Seguir Comprando</button>
+`;
+cartContent.appendChild(emptyCart);
+} else {
+// Lista de productos en el carrito
+const cartItems = document.createElement('div');
+cartItems.className = 'space-y-4 mb-6';
+carrito.forEach(item => {
+const cartItem = document.createElement('div');
+cartItem.className = 'flex items-center justify-between pb-4 border-b';
+const itemInfo = document.createElement('div');
+itemInfo.className = 'flex items-center';
+const itemImage = document.createElement('div');
+itemImage.className = 'w-16 h-16 rounded overflow-hidden mr-4';
+itemImage.innerHTML = `<img src="${item.imagen}" alt="${item.nombre}" class="w-full h-full object-cover object-top">`;
+const itemDetails = document.createElement('div');
+itemDetails.innerHTML = `
+<h4 class="font-medium">${item.nombre}</h4>
+<p class="text-sm text-gray-500">${item.descripcion}</p>
+<p class="text-primary font-medium">$${item.precio.toFixed(2)}</p>
+`;
+itemInfo.appendChild(itemImage);
+itemInfo.appendChild(itemDetails);
+const quantityControls = document.createElement('div');
+quantityControls.className = 'flex items-center';
+const decreaseButton = document.createElement('button');
+decreaseButton.className = 'w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full';
+decreaseButton.innerHTML = '<i class="ri-subtract-line"></i>';
+decreaseButton.onclick = () => cambiarCantidad(item.id, item.cantidad - 1);
+const quantityDisplay = document.createElement('span');
+quantityDisplay.className = 'mx-3';
+quantityDisplay.textContent = item.cantidad;
+const increaseButton = document.createElement('button');
+increaseButton.className = 'w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full';
+increaseButton.innerHTML = '<i class="ri-add-line"></i>';
+increaseButton.onclick = () => cambiarCantidad(item.id, item.cantidad + 1);
+const removeButton = document.createElement('button');
+removeButton.className = 'ml-4 text-gray-400 hover:text-red-500';
+removeButton.innerHTML = '<i class="ri-delete-bin-line"></i>';
+removeButton.onclick = () => eliminarDelCarrito(item.id);
+quantityControls.appendChild(decreaseButton);
+quantityControls.appendChild(quantityDisplay);
+quantityControls.appendChild(increaseButton);
+quantityControls.appendChild(removeButton);
+cartItem.appendChild(itemInfo);
+cartItem.appendChild(quantityControls);
+cartItems.appendChild(cartItem);
+});
+// Resumen del pedido
+const orderSummary = document.createElement('div');
+orderSummary.className = 'space-y-2 mb-6 pt-4';
+const subtotal = carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+const envio = 2.00;
+const total = subtotal + envio;
+orderSummary.innerHTML = `
+<div class="flex justify-between">
+<span>Subtotal</span>
+<span>$${subtotal.toFixed(2)}</span>
+</div>
+<div class="flex justify-between">
+<span>Envío</span>
+<span>$${envio.toFixed(2)}</span>
+</div>
+<div class="flex justify-between font-bold text-lg pt-2 border-t">
+<span>Total</span>
+<span>$${total.toFixed(2)}</span>
+</div>
+`;
+// Botones de acción
+const actionButtons = document.createElement('div');
+actionButtons.className = 'flex flex-col sm:flex-row gap-4 mt-6';
+const checkoutButton = document.createElement('button');
+checkoutButton.className = 'bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap flex-1';
+checkoutButton.textContent = 'Proceder al Pago';
+checkoutButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+window.location.href = '#contacto';
+mostrarNotificacion('Redirigiendo a la página de pago...');
+};
+const continueShoppingButton = document.createElement('button');
+continueShoppingButton.className = 'border border-primary text-primary px-6 py-3 !rounded-button font-medium hover:bg-primary hover:text-white transition whitespace-nowrap flex-1';
+continueShoppingButton.textContent = 'Seguir Comprando';
+continueShoppingButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+mostrarModalProductos();
+};
+actionButtons.appendChild(checkoutButton);
+actionButtons.appendChild(continueShoppingButton);
+cartContent.appendChild(cartItems);
+cartContent.appendChild(orderSummary);
+cartContent.appendChild(actionButtons);
+}
+// Ensamblar el modal
+modalContent.appendChild(modalHeader);
+modalContent.appendChild(cartContent);
+modalOverlay.appendChild(modalContent);
+// Evento para el botón "Seguir Comprando" cuando el carrito está vacío
+modalOverlay.addEventListener('click', (e) => {
+if (e.target.id === 'seguirComprando') {
+document.body.removeChild(modalOverlay);
+mostrarModalProductos();
+}
+});
+return modalOverlay;
+}
+// Mostrar modal de productos
+function mostrarModalProductos() {
+const modalExistente = document.getElementById('modalProductos');
+if (modalExistente) {
+modalExistente.remove();
+}
+const modal = crearModalProductos();
+document.body.appendChild(modal);
+}
+// Mostrar modal del carrito
+function mostrarCarrito() {
+const modalExistente = document.getElementById('modalCarrito');
+if (modalExistente) {
+modalExistente.remove();
+}
+const modal = crearModalCarrito();
+document.body.appendChild(modal);
+}
+// Función para crear el modal de confirmación de pedido
+function crearModalConfirmacionPedido() {
+// Obtener datos del formulario
+const nombre = document.querySelector('input[placeholder="Tu nombre"]').value || 'Cliente';
+const telefono = document.querySelector('input[placeholder="Tu número de teléfono"]').value || '(No especificado)';
+const direccion = document.querySelector('input[placeholder="Tu dirección completa"]').value || '(No especificada)';
+const instrucciones = document.querySelector('textarea[placeholder="Instrucciones para el repartidor"]').value || '(Sin instrucciones adicionales)';
+// Método de pago seleccionado
+let metodoPago = 'Efectivo'; // Por defecto
+const metodoPagoElements = document.querySelectorAll('.border-primary.bg-opacity-5');
+if (metodoPagoElements.length > 0) {
+const iconElement = metodoPagoElements[0].querySelector('i');
+if (iconElement && iconElement.classList.contains('ri-bank-card-fill')) {
+metodoPago = 'Tarjeta';
+} else if (iconElement && iconElement.classList.contains('ri-paypal-fill')) {
+metodoPago = 'PayPal';
+}
+}
+// Calcular totales
+const subtotal = carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+const envio = 2.00;
+// Verificar opciones adicionales
+let extras = 0;
+let opcionesAdicionales = [];
+const incluirCubiertosCheckbox = document.getElementById('incluirCubiertos');
+if (incluirCubiertosCheckbox && incluirCubiertosCheckbox.checked) {
+opcionesAdicionales.push('Incluir cubiertos');
+}
+const agregarSalsaExtraCheckbox = document.getElementById('agregarSalsaExtra');
+if (agregarSalsaExtraCheckbox && agregarSalsaExtraCheckbox.checked) {
+extras += 0.99;
+opcionesAdicionales.push('Salsa extra (+$0.99)');
+}
+const total = subtotal + envio + extras;
+// Generar número de pedido aleatorio
+const numeroPedido = Math.floor(100000 + Math.random() * 900000);
+// Crear el fondo oscuro
+const modalOverlay = document.createElement('div');
+modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modalOverlay.id = 'modalConfirmacion';
+// Crear el contenido del modal
+const modalContent = document.createElement('div');
+modalContent.className = 'bg-white rounded-lg shadow-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto';
+// Cabecera del modal
+const modalHeader = document.createElement('div');
+modalHeader.className = 'flex justify-between items-center mb-6';
+const modalTitle = document.createElement('h3');
+modalTitle.className = 'text-2xl font-bold';
+modalTitle.textContent = 'Confirmar Pedido';
+const closeButton = document.createElement('button');
+closeButton.className = 'text-gray-500 hover:text-gray-700';
+closeButton.innerHTML = '<i class="ri-close-line text-2xl"></i>';
+closeButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+};
+modalHeader.appendChild(modalTitle);
+modalHeader.appendChild(closeButton);
+// Contenido del modal
+const modalBody = document.createElement('div');
+// Resumen del pedido
+const orderSummary = document.createElement('div');
+orderSummary.className = 'mb-6';
+orderSummary.innerHTML = `
+<h4 class="font-bold text-lg mb-3">Resumen del Pedido</h4>
+<div class="bg-gray-50 p-4 rounded mb-4">
+<div class="space-y-3">
+${carrito.map(item => `
+<div class="flex justify-between items-center">
+<div>
+<span class="font-medium">${item.nombre}</span>
+<span class="text-gray-500 text-sm ml-2">x${item.cantidad}</span>
+</div>
+<span>$${(item.precio * item.cantidad).toFixed(2)}</span>
+</div>
+`).join('')}
+${opcionesAdicionales.length > 0 ? `
+<div class="border-t pt-2 mt-2 mb-2">
+<p class="font-medium text-sm mb-2">Opciones adicionales:</p>
+${opcionesAdicionales.map(opcion => `
+<div class="flex justify-between items-center text-sm">
+<span>${opcion}</span>
+${opcion.includes('+$') ? `<span>$0.99</span>` : ''}
+</div>
+`).join('')}
+</div>
+` : ''}
+<div class="border-t pt-2 mt-2">
+<div class="flex justify-between text-sm">
+<span>Subtotal</span>
+<span>$${subtotal.toFixed(2)}</span>
+</div>
+<div class="flex justify-between text-sm">
+<span>Envío</span>
+<span>$${envio.toFixed(2)}</span>
+</div>
+${extras > 0 ? `
+<div class="flex justify-between text-sm">
+<span>Extras</span>
+<span>$${extras.toFixed(2)}</span>
+</div>
+` : ''}
+<div class="flex justify-between font-bold text-lg pt-2">
+<span>Total</span>
+<span>$${total.toFixed(2)}</span>
+</div>
+</div>
+</div>
+</div>
+`;
+// Datos de entrega
+const deliveryInfo = document.createElement('div');
+deliveryInfo.className = 'mb-6';
+deliveryInfo.innerHTML = `
+<h4 class="font-bold text-lg mb-3">Datos de Entrega</h4>
+<div class="bg-gray-50 p-4 rounded">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<p class="text-sm text-gray-500">Nombre</p>
+<p class="font-medium">${nombre}</p>
+</div>
+<div>
+<p class="text-sm text-gray-500">Teléfono</p>
+<p class="font-medium">${telefono}</p>
+</div>
+<div class="md:col-span-2">
+<p class="text-sm text-gray-500">Dirección</p>
+<p class="font-medium">${direccion}</p>
+</div>
+<div class="md:col-span-2">
+<p class="text-sm text-gray-500">Instrucciones</p>
+<p class="font-medium">${instrucciones}</p>
+</div>
+<div>
+<p class="text-sm text-gray-500">Método de pago</p>
+<p class="font-medium">${metodoPago}</p>
+</div>
+<div>
+<p class="text-sm text-gray-500">Tiempo estimado de entrega</p>
+<p class="font-medium">30-45 minutos</p>
+</div>
+</div>
+</div>
+`;
+// Botones de acción
+const actionButtons = document.createElement('div');
+actionButtons.className = 'flex flex-col sm:flex-row gap-4 mt-6';
+const confirmButton = document.createElement('button');
+confirmButton.className = 'bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap flex-1';
+confirmButton.textContent = 'Confirmar Pedido';
+confirmButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+mostrarModalExitoPedido(numeroPedido);
+};
+const editButton = document.createElement('button');
+editButton.className = 'border border-primary text-primary px-6 py-3 !rounded-button font-medium hover:bg-primary hover:text-white transition whitespace-nowrap flex-1';
+editButton.textContent = 'Volver y Editar';
+editButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+};
+actionButtons.appendChild(confirmButton);
+actionButtons.appendChild(editButton);
+// Ensamblar el modal
+modalBody.appendChild(orderSummary);
+modalBody.appendChild(deliveryInfo);
+modalBody.appendChild(actionButtons);
+modalContent.appendChild(modalHeader);
+modalContent.appendChild(modalBody);
+modalOverlay.appendChild(modalContent);
+return modalOverlay;
+}
+// Función para crear el modal de éxito del pedido
+function mostrarModalExitoPedido(numeroPedido) {
+// Crear el fondo oscuro
+const modalOverlay = document.createElement('div');
+modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+modalOverlay.id = 'modalExito';
+// Crear el contenido del modal
+const modalContent = document.createElement('div');
+modalContent.className = 'bg-white rounded-lg shadow-xl p-6 max-w-md w-full text-center';
+// Icono de éxito
+const successIcon = document.createElement('div');
+successIcon.className = 'w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6';
+successIcon.innerHTML = '<i class="ri-check-line text-green-500 text-4xl"></i>';
+// Mensaje de éxito
+const successMessage = document.createElement('div');
+successMessage.className = 'mb-6';
+successMessage.innerHTML = `
+<h3 class="text-2xl font-bold mb-2">¡Pedido Realizado con Éxito!</h3>
+<p class="text-gray-600 mb-4">Tu pedido #${numeroPedido} ha sido confirmado.</p>
+<p class="text-gray-600">Tiempo estimado de entrega: <span class="font-bold">30-45 minutos</span></p>
+`;
+// Opciones de seguimiento
+const trackingOptions = document.createElement('div');
+trackingOptions.className = 'bg-gray-50 p-4 rounded mb-6';
+trackingOptions.innerHTML = `
+<p class="font-medium mb-3">Recibir actualizaciones del pedido</p>
+<div class="flex items-center justify-center space-x-4">
+<label class="custom-checkbox">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+SMS
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+Email
+</label>
+</div>
+`;
+// Botón de cerrar
+const closeButton = document.createElement('button');
+closeButton.className = 'bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap w-full';
+closeButton.textContent = 'Cerrar';
+closeButton.onclick = () => {
+document.body.removeChild(modalOverlay);
+// Limpiar carrito después de completar el pedido
+carrito = [];
+actualizarContadorCarrito();
+// Limpiar formulario
+const form = document.querySelector('form');
+if (form) form.reset();
+// Mostrar notificación
+mostrarNotificacion('¡Gracias por tu pedido!');
+};
+// Ensamblar el modal
+modalContent.appendChild(successIcon);
+modalContent.appendChild(successMessage);
+modalContent.appendChild(trackingOptions);
+modalContent.appendChild(closeButton);
+modalOverlay.appendChild(modalContent);
+document.body.appendChild(modalOverlay);
+}
+// Inicializar eventos
+document.addEventListener('DOMContentLoaded', () => {
+// Inicializar los totales del pedido al cargar la página
+setTimeout(() => {
+actualizarTotalesPedido();
+}, 500);
+// Agregar evento al botón de agregar productos en la sección de pedido
+const agregarProductosBtn = document.getElementById('agregarProductosBtn');
+if (agregarProductosBtn) {
+agregarProductosBtn.addEventListener('click', mostrarModalProductos);
+}
+// Botón "Ordenar Ahora"
+const ordenarAhoraBtn = document.getElementById('ordenarAhoraBtn');
+if (ordenarAhoraBtn) {
+ordenarAhoraBtn.addEventListener('click', mostrarModalProductos);
+}
+// Botón "Ver Menú"
+const verMenuBtn = document.getElementById('verMenuBtn');
+if (verMenuBtn) {
+verMenuBtn.addEventListener('click', function(e) {
+e.preventDefault();
+document.querySelector('#menu').scrollIntoView({
+behavior: 'smooth'
+});
+});
+}
+// Botón del carrito
+const carritoBtn = document.getElementById('carritoBtn');
+if (carritoBtn) {
+carritoBtn.addEventListener('click', mostrarCarrito);
+}
+// Eventos para los checkboxes personalizados
+const incluirCubiertosCheckbox = document.getElementById('incluirCubiertos');
+const agregarSalsaExtraCheckbox = document.getElementById('agregarSalsaExtra');
+if (incluirCubiertosCheckbox) {
+incluirCubiertosCheckbox.addEventListener('change', function() {
+const checkmark = this.nextElementSibling;
+if (this.checked) {
+checkmark.classList.add('active');
+mostrarNotificacion('Se incluirán cubiertos con tu pedido');
+} else {
+checkmark.classList.remove('active');
+mostrarNotificacion('Has elegido no incluir cubiertos');
+}
+// Animar el checkmark
+checkmark.style.animation = 'none';
+void checkmark.offsetWidth; // Reiniciar la animación
+checkmark.style.animation = 'check-animation 0.3s ease-in-out forwards';
+});
+}
+if (agregarSalsaExtraCheckbox) {
+agregarSalsaExtraCheckbox.addEventListener('change', function() {
+const checkmark = this.nextElementSibling;
+if (this.checked) {
+checkmark.classList.add('active');
+mostrarNotificacion('Salsa extra añadida (+$0.99)');
+} else {
+checkmark.classList.remove('active');
+mostrarNotificacion('Salsa extra eliminada');
+}
+// Actualizar el total del pedido cuando cambia el estado del checkbox
+actualizarTotalesPedido();
+});
+}
+// Botones "Añadir" en las tarjetas de productos
+document.querySelectorAll('.menu-item button, .bg-white button').forEach(button => {
+if (button.textContent.includes('Añadir')) {
+const productCard = button.closest('.menu-item') || button.closest('.bg-white');
+if (productCard) {
+const nombreElement = productCard.querySelector('h3');
+if (nombreElement) {
+const nombre = nombreElement.textContent;
+const producto = productosDisponibles.find(p => p.nombre === nombre);
+if (producto) {
+button.addEventListener('click', () => agregarAlCarrito(producto));
+}
+}
+}
+}
+});
+// Botón "Realizar Pedido"
+const realizarPedidoBtn = document.getElementById('realizarPedidoBtn');
+if (realizarPedidoBtn) {
+realizarPedidoBtn.addEventListener('click', () => {
+// Validar formulario
+const nombre = document.querySelector('input[placeholder="Tu nombre"]').value;
+const telefono = document.querySelector('input[placeholder="Tu número de teléfono"]').value;
+const direccion = document.querySelector('input[placeholder="Tu dirección completa"]').value;
+if (!nombre || !telefono || !direccion) {
+mostrarNotificacion('Por favor completa los campos obligatorios');
+return;
+}
+// Mostrar modal de confirmación
+const modalConfirmacion = crearModalConfirmacionPedido();
+document.body.appendChild(modalConfirmacion);
+});
+}
+// Método de pago - selección
+const metodoPagoOptions = document.querySelectorAll('.border.rounded.p-3.text-center.cursor-pointer');
+metodoPagoOptions.forEach(option => {
+option.addEventListener('click', () => {
+metodoPagoOptions.forEach(opt => {
+opt.classList.remove('border-primary', 'bg-primary', 'bg-opacity-5');
+opt.classList.add('border-gray-300');
+});
+option.classList.remove('border-gray-300');
+option.classList.add('border-primary', 'bg-primary', 'bg-opacity-5');
+});
+});
+});
+</script>
 </body>
 </html>
